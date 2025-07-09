@@ -39,4 +39,4 @@ Setup a vulnerable NFC reader with a crap password or magic code. Let users try 
 
 # Credits
 
-This is a continuation of Dunderhay's box project https://github.com/dunderhay/Kawaiicon-Box-CTF-2019
+This is a continuation of Dunderhay's box project from 2019: https://github.com/dunderhay/Kawaiicon-Box-CTF-2019
