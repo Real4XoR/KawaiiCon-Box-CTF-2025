@@ -6,7 +6,7 @@ First box contains multiple locks of varying difficulty i.e. bluetooth smart pad
 
 # Challnge 2 - Smart Camera
 
-Have a local web server run on ESP32 and a blacked out box adjacent to the main box. Main box only has a wireless network to connect to and a URL where the webapp is hosted. Will be vulnerable and users have to get access to the smart camera and swivel it within the blacked out box to identify the code for a combo padlock.
+Have a local web server run on ESP32 and a blacked out box adjacent to the main box. Main box only has a piece of paper with a wireless network to connect, credentials for the wireless network, and a URL where the webapp is hosted locally. Will be vulnerable and users have to get access to the smart camera and swivel it within the blacked out box to identify the code for a combo padlock.
 
 # Challenge 3 - NFC Cracking
 
