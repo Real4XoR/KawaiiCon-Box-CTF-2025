@@ -24,7 +24,7 @@ Have a local web server hosted on a Pi 4. Vulnerable login portal (SQLI), gets r
 - Raspberry Pi 4
 - Raspberry Pi Camera (https://www.digikey.co.nz/en/products/detail/raspberry-pi/SC1223/17278639)
 - Combo lock
-- 
+- https://randomnerdtutorials.com/raspberry-pi-mjpeg-streaming-web-server-picamera2/
 
 ## Challenge 3 - NFC Cracking
 
@@ -36,6 +36,8 @@ Setup a vulnerable NFC reader with a crap password or magic code. Let users try 
 - Programmable 125kHz RFID card
 - Bad password or UID
 - Servo
+- https://github.com/ikarus23/MifareClassicTool
+- https://play.google.com/store/apps/details?id=de.syss.MifareClassicTool
 
 # Prizes
 
