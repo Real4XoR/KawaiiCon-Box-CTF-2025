@@ -1,6 +1,12 @@
 # KawaiiCon-Box-CTF-2025
 
-# Challenge 1 - Padlock Riddle
+# Overview
+
+A challenge box for KawaiiCon 2025. Solve the riddles
+
+Overall cost: $XXX
+
+## Challenge 1 - Padlock Riddle
 
 First box contains multiple locks on a rod with loads on keys that could open any one of them. Riddle to find four keys with numbers on them to unlock combo lock.
 
@@ -9,19 +15,18 @@ First box contains multiple locks on a rod with loads on keys that could open an
 - 10-15 combo padlocks
 - 30 keys
 
-# Challnge 2 - Smart Camera
+## Challnge 2 - Smart Camera
 
-Have a local web server run on ESP32 and a blacked out box adjacent to the main box. Main box only has a piece of paper with a wireless network to connect, credentials for the wireless network, and a URL where the webapp is hosted locally. Vulnerable login portal (SQLI), gets redirected to dashboard with loads of local IP addresses. One of them leads to the actuial camera in the box. Camera is looking at QR code that contains information on how to get code for the combo lock.
+Have a local web server hosted on a Pi 4. Vulnerable login portal (SQLI), gets redirected to dashboard with loads of local IP addresses. One of them leads to the actuial camera in the box. Camera is looking at QR code that contains information on how to get code for the combo lock.
 
 ### Materials Required:
 
-- ESP32 enabled board (Arduino Nano ESP32)
-- IP camera (with night vison)
-- Wood
-- Black paint
-- Combo padlock
+- Raspberry Pi 4
+- Raspberry Pi Camera (https://www.digikey.co.nz/en/products/detail/raspberry-pi/SC1223/17278639)
+- Combo lock
+- 
 
-# Challenge 3 - NFC Cracking
+## Challenge 3 - NFC Cracking
 
 Setup a vulnerable NFC reader with a crap password or magic code. Let users try and crack it or read it off an existing card.
 
