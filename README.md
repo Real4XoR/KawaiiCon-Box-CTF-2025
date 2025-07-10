@@ -45,7 +45,7 @@ Setup a vulnerable NFC reader with a crap password or magic code. Let users try 
 # Prizes
 
 - T-shirts
-- Vouchers (TryHackMe or HackTheBox)
+- Vouchers (TryHackMe (https://tryhackme.com/subscriptions), $17 p/month or HackTheBox, $20 USD p/month (https://www.hackthebox.com/giftcards))
 
 # Credits
 
