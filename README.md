@@ -2,17 +2,16 @@
 
 # Challenge 1 - Padlock Riddle
 
-First box contains multiple locks on a rod with loads on keys that could open any one of them. First riddle is to find correct key on keychain, second riddle is to find the padlock the key unlocks.
+First box contains multiple locks on a rod with loads on keys that could open any one of them. Riddle to find four keys with numbers on them to unlock combo lock.
 
 ### Materials Required:
 
-- Smart padlock
-- Bluetooth padlock
-- Regular padlock with varying difficulty
+- 10-15 combo padlocks
+- 30 keys
 
 # Challnge 2 - Smart Camera
 
-Have a local web server run on ESP32 and a blacked out box adjacent to the main box. Main box only has a piece of paper with a wireless network to connect, credentials for the wireless network, and a URL where the webapp is hosted locally. Will be vulnerable and users have to get access to the smart camera and swivel it within the blacked out box to identify the code for a combo padlock.
+Have a local web server run on ESP32 and a blacked out box adjacent to the main box. Main box only has a piece of paper with a wireless network to connect, credentials for the wireless network, and a URL where the webapp is hosted locally. Vulnerable login portal (SQLI), gets redirected to dashboard with loads of local IP addresses. One of them leads to the actuial camera in the box. Camera is looking at QR code that contains information on how to get code for the combo lock.
 
 ### Materials Required:
 
