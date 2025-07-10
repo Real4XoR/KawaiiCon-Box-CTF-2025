@@ -1,8 +1,8 @@
 # KawaiiCon-Box-CTF-2025
 
-# Challenge 1 - Lock Picking
+# Challenge 1 - Padlock Riddle
 
-First box contains multiple locks of varying difficulty i.e. bluetooth smart padlock, regular standard pin padlack, security pin padlock etc. As soon as one is unlocked, the next level us unlocked. The rest can be used for practice by other people.
+First box contains multiple locks on a rod with loads on keys that could open any one of them. First riddle is to find correct key on keychain, second riddle is to find the padlock the key unlocks.
 
 ### Materials Required:
 
