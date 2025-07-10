@@ -10,16 +10,19 @@ Overall cost: $XXX
 
 First box contains multiple locks on a rod with loads on keys that could open any one of them. Riddle to find four keys with numbers on them to unlock combo lock.
 
-### Materials Required:
+#### Riddles
 
-- 10-15 combo padlocks
-- 30 keys
+TODO
+
+#### Materials Required:
+
+- Combo lock
 
 ## Challnge 2 - Smart Camera
 
 Have a local web server hosted on a Pi 4. Vulnerable login portal (SQLI), gets redirected to dashboard with loads of local IP addresses. One of them leads to the actuial camera in the box. Camera is looking at QR code that contains information on how to get code for the combo lock.
 
-### Materials Required:
+#### Materials Required:
 
 - Raspberry Pi 4
 - Raspberry Pi Camera (https://www.digikey.co.nz/en/products/detail/raspberry-pi/SC1223/17278639)
@@ -30,7 +33,7 @@ Have a local web server hosted on a Pi 4. Vulnerable login portal (SQLI), gets r
 
 Setup a vulnerable NFC reader with a crap password or magic code. Let users try and crack it or read it off an existing card.
 
-### Materials Required:
+#### Materials Required:
 
 - NFC reader
 - Programmable 125kHz RFID card
@@ -41,7 +44,8 @@ Setup a vulnerable NFC reader with a crap password or magic code. Let users try 
 
 # Prizes
 
-???
+- T-shirts
+- Vouchers (TryHackMe or HackTheBox)
 
 # Credits
 
