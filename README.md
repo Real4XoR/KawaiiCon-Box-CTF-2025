@@ -2,7 +2,7 @@
 
 # Overview
 
-A challenge box for KawaiiCon 2025. Solve the riddles
+A challenge box for KawaiiCon 2025. Solve the riddles, get a prize.
 
 Overall cost: $XXX
 
