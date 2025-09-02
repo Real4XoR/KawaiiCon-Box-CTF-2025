@@ -8,15 +8,30 @@ Overall cost: $XXX
 
 ## Challenge 1 - Padlock Riddle
 
-First box contains multiple locks on a rod with loads on keys that could open any one of them. Riddle to find four keys with numbers on them to unlock combo lock.
+There are two ways to open the box - either you solve the puzzle and get the combo lock code or you pick the other lock. Both open the first box. 
 
-#### Riddles
+#### Puzzle
 
-TODO
+eight locks with 35 keys
+
+locks attached to chain 
+
+only three keys work
+
+all locks have letters on them 
+
+all keys have ROT-X letters on them
+
+letter correspond with the number of its place in alphabet e.g. A=1 B=2 ... Z=26
+
+correct 3 digits will unlock combo pad lock
 
 #### Materials Required:
 
 - Combo lock
+- Regular lock
+- Chain
+- Lots of keys, three of which work
 
 ## Challnge 2 - Smart Camera
 
