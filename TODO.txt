@@ -1,0 +1,11 @@
+Buy parts for challenge 1
+
+Decorate box
+
+Battery pack for Pi?
+Mount camera and Pi to box
+
+Setup Pi AP
+Harden Pi
+
+Finish challenge 3
