@@ -1,9 +1,8 @@
-import time
+import pygame, os, time
 import RPi.GPIO as GPIO
 from mfrc522 import SimpleMFRC522
 from gpiozero import AngularServo
 from gpiozero.pins.pigpio import PiGPIOFactory
-from time import sleep
 
 # ---------- CONFIG ----------
 
@@ -66,6 +65,14 @@ def open_door():
 
 def close_door():
 	servo.angle = CLOSE_STATE
+
+# ---------- Music ---------------
+
+def play_music(music_file):
+    pygame.mixer.music.stop()
+    file_path = os.path.join("/home/raspberry/kawaiicon_box/static", music_file)
+    pygame.mixer.music.load(file_path)
+    pygame.mixer.music.play()
 
 # ---------- RFID reader ----------
 
