@@ -68,7 +68,7 @@ Wire up the bits. I've included a Raspberry Pi 4 pin-out sheet and the wiring se
 
 ![Raspberry PI pin-out](images/GPIO.png)
 
-![Box wiring](images/RaspberryPi-pinout)
+![Box wiring](images/RaspberryPi-pinout.png)
 
 # Prizes
 
