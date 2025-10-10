@@ -28,7 +28,7 @@ correct 3 digits will unlock combo pad lock
 
 ## Challnge 2 - Web Application
 
-Have a local web server hosted on a Pi 4. Vulnerable login portal (SQLI), gets redirected to dashboard with loads of local IP addresses. Web application has three tabs; dashboard, cameras, and system. Users don't have permission to view the system panel, but note that the camera looks for QRCodes shown to it and attempts to retrieves the contents on the URL. Camera scanning is vulnerable to SSRF and can retrieve internal URLs. Grab contents of system panel and get code to the next combo lock.
+Have a local web server hosted on a Pi 4. Login portal vulnerable to SQLI via the session cookie, gets redirected to dashboard with loads of local IP addresses. Web application has three tabs; dashboard, cameras, and system. Users don't have permission to view the system panel, but note that the camera looks for QRCodes shown to it and attempts to retrieves the contents on the URL. Camera scanning is vulnerable to SSRF and can retrieve internal URLs. Grab contents of system panel and get code to the next combo lock.
 
 ## Challenge 3 - NFC Reader
 
