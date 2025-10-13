@@ -26,7 +26,7 @@ letter correspond with the number of its place in alphabet e.g. A=1 B=2 ... Z=26
 
 correct 3 digits will unlock combo pad lock
 
-## Challnge 2 - Web Application
+## Challenge 2 - Web Application
 
 Have a local web server hosted on a Pi 4. Login portal vulnerable to SQLI via the session cookie, gets redirected to dashboard with loads of local IP addresses. 
 
@@ -50,7 +50,7 @@ Light returns information based on the card you've scanned:
 There are two bonus challenges for those that pwn the entire Raspberry PI, each get an extra prize:
 
 - A 'how_did_we_get_here.txt' flag in the root directory of the PI. Requires basic privilege escalation
-- A secret second web application running on the PI that requires the user to pwn the PI and check out the running services.
+- A secret second web application running on the PI that requires the user to pwn the PI and check out the running services. Returns flag upon navigating to service.
 
 # Installation
 
