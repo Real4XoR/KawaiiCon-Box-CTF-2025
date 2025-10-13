@@ -28,7 +28,11 @@ correct 3 digits will unlock combo pad lock
 
 ## Challnge 2 - Web Application
 
-Have a local web server hosted on a Pi 4. Login portal vulnerable to SQLI via the session cookie, gets redirected to dashboard with loads of local IP addresses. Web application has three tabs; dashboard, cameras, and system. Users don't have permission to view the system panel, but note that the camera looks for QRCodes shown to it and attempts to retrieves the contents on the URL. Camera scanning is vulnerable to SSRF and can retrieve internal URLs. Grab contents of system panel and get code to the next combo lock.
+Have a local web server hosted on a Pi 4. Login portal vulnerable to SQLI via the session cookie, gets redirected to dashboard with loads of local IP addresses. 
+
+Web application has three tabs; dashboard, cameras, and system. Users don't have permission to view the system panel. One tab contains the live camera feed.
+
+Note that the camera scans QRCodes shown to it and retrieves the contents of the URL. Camera scanning is vulnerable to SSRF and can retrieve internal URLs. Grab contents of system panel and get code to the next combo lock.
 
 ## Challenge 3 - NFC Reader
 
@@ -45,7 +49,7 @@ Light returns information based on the card you've scanned:
 
 There are two bonus challenges for those that pwn the entire Raspberry PI, each get an extra prize:
 
-- A 'how_did_we_get_here.txt' flag in the root directory of the PI
+- A 'how_did_we_get_here.txt' flag in the root directory of the PI. Requires basic privilege escalation
 - A secret second web application running on the PI that requires the user to pwn the PI and check out the running services.
 
 # Installation
