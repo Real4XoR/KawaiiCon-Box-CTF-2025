@@ -1,3 +1,4 @@
 spidev
 mfrc522
 pigpio
+flask
