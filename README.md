@@ -42,7 +42,7 @@ Light returns information based on the card you've scanned:
 
 - Blue light = Waiting
 - Red light = Wrong
-- Orange light = Correct UID but wrong password
+- Purple light = Correct UID but wrong password
 - Green light = Correct UID and correct password
 
 ## Bonus Challenges
