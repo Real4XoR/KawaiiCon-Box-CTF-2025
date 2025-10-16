@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NetWire Interface</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body translate="no" data-new-gr-c-s-check-loaded="14.1009.0" data-gr-ext-installed="">
+  <div id="root">
+    <div class="app-skeleton">
+      <header class="app-header">
+        <div class="app-header__anchor"><span class="app-header__anchor__text">Kawaiicon NetWire</span></div>
+        <nav>
+          <ul class="nav">
+            <li class="nav__item">
+                <a class="nav__link nav__link--active" href="{{ url_for('dashboard') }}"><span class="nav__link__element">CAMERAS</span></a>
+
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="{{ url_for('system_configuration') }}"><span class="nav__link__element">SYSTEM</span></a>
+
+          </li>
+            <li class="nav__item">
+              <a class="nav__link-logout" href="{{ url_for('logout') }}">LOGOUT</span></a>
+            </li>
+          </ul>
+        </nav>
+        <div></div>
+      </header>
+      <div class="app-container">
+        <div class="app-a">
+          <div class="segment-topbar">
+            <div class="segment-topbar__header">
+              <h3 class="text-heading3 segment-topbar__title">CAMERAS</h3>
+            </div>
+
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section__header">
+              <h2 class="nav-section__title">Feeds</h2>
+            </div>
+
+            <div class="nav-section__body">
+              <ul class="nav">
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera1">
+                    <span class="conversation-link conversation-link--online ">
+                      <span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 1</span><span class="conversation-link__element"></span>
+                    </span>
+                  </a>
+                </li>
+
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera2">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 2</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera3">
+                    <span class="conversation-link conversation-link--online ">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 3</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera4">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 4</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera5">
+                    <span class="conversation-link conversation-link--online ">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 5</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera6">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 6</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera7">
+                    <span class="conversation-link conversation-link--online ">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 7</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera8">
+                    <span class="conversation-link conversation-link--online ">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 8</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera9">
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 9</span></span>
+                  </a>
+                </li>
+                <li class="nav__item">
+                  <a class="nav__link" href="#" data-id="camera10">
+                    <span class="conversation-link conversation-link--online ">
+
+                    <span class="conversation-link"><span class="conversation-link__icon"></span><span class="conversation-link__element">Camera Feed 10</span></span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="app-main">
+          <div class="channel-feed">
+            <div class="segment-topbar">
+              <div class="segment-topbar__header">
+                <span class="segment-topbar__overline segment-topbar__overline">NetWire_Seed: a206783497956fadfd4fa3d9e83ea832</span>
+                <h4 class="text-heading4 segment-topbar__title" id="segmentTitle">
+                  <span class="channel-link"><span class="channel-link__icon">#</span><span class="channel-link__element"></span></span>
+                </h4>
+              </div>
+              <div class="segment-topbar__aside">
+                <div class="button-toolbar">
+                  <a class="button button--default">
+                    <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M18 9.5c2.481 0 4.5 1.571 4.5 3.503 0 1.674-1.703 3.48-4.454 3.48-.899 0-1.454-.156-2.281-.357-.584.358-.679.445-1.339.686.127-.646.101-.924.081-1.56-.583-.697-1.007-1.241-1.007-2.249 0-1.932 2.019-3.503 4.5-3.503zm0-1.5c-3.169 0-6 2.113-6 5.003 0 1.025.37 2.032 1.023 2.812.027.916-.511 2.228-.997 3.184 1.302-.234 3.15-.754 3.989-1.268.709.173 1.388.252 2.03.252 3.542 0 5.954-2.418 5.954-4.98.001-2.906-2.85-5.003-5.999-5.003zm-.668 6.5h-1.719v-.369l.938-1.361v-.008h-.869v-.512h1.618v.396l-.918 1.341v.008h.95v.505zm3.035 0h-2.392v-.505l1.306-1.784v-.011h-1.283v-.7h2.25v.538l-1.203 1.755v.012h1.322v.695zm-10.338 9.5c1.578 0 2.971-1.402 2.971-3h-6c0 1.598 1.45 3 3.029 3zm.918-7.655c-.615-1.001-.947-2.159-.947-3.342 0-3.018 2.197-5.589 5.261-6.571-.472-1.025-1.123-1.905-2.124-2.486-.644-.374-1.041-1.07-1.04-1.82v-.003c0-1.173-.939-2.123-2.097-2.123s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.667 2.712-1.985 11.715-6.862 13.306v1.749h9.782c.425-.834.931-1.764 1.165-2.655zm-.947-15.345c.552 0 1 .449 1 1 0 .552-.448 1-1 1s-1-.448-1-1c0-.551.448-1 1-1z"></path>
+                    </svg>
+                  </a>
+                  <a class="button button--default">
+                    <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M6 16h-6v-3h6v3zm-2-5v-10h-2v10h2zm-2 7v5h2v-5h-2zm13-7h-6v-3h6v3zm-2-5v-5h-2v5h2zm-2 7v10h2v-10h-2zm13 3h-6v-3h6v3zm-2-5v-10h-2v10h2zm-2 7v5h2v-5h-2z"></path>
+                    </svg>
+                  </a>
+                  <a class="button button--default">
+                    <svg class="button__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                      <path d="M12 18c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3zm0-9c1.657 0 3 1.343 3 3s-1.343 3-3 3-3-1.343-3-3 1.343-3 3-3z"></path>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="channel-feed__body">
+
+              <div class="message">
+                <div class="message__body" id="messageBody">
+                  <div>Select a nav item to view content.</div>
+                </div>
+                <div class="message__footer">
+                    <span id="liveTime"></span></div>
+              </div>
+            </div>
+            <div class="channel-feed__footer">
+
+            </div>
+          </div>
+        </div>
+        <div class="app-b">
+          <div class="pad">
+            <div class="pad__body" id="padBody">
+              <h4 class="text-heading3 undefined">Warning!</h4>
+
+              <h4 class="text-heading3 undefined">Partial Camera Network Disruption</h4>
+              <p class="text-paragraph1">Some camera feeds are currently inaccessible due to network instability or interference. Anomalous data patterns indicate potential unauthorised modification or tampering of camera devices.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const messageBody = document.getElementById('messageBody');
+    const segmentTitle = document.getElementById('segmentTitle');
+    const padBody = document.getElementById('padBody');
+
+    let camera7Interval = null;
+
+
+    function clearDisplay() {
+      messageBody.innerHTML = '';
+      segmentTitle.querySelector('.channel-link__element').textContent = '';
+      document.querySelectorAll('.nav__link').forEach(link => {
+        link.classList.remove('conversation-link--unread');
+        link.classList.add('conversation-link');
+      });
+      padBody.innerHTML = '<h4 class="text-heading3 undefined">Warning!</h4><h4 class="text-heading3 undefined">Partial Camera Network Disruption</h4><p class="text-paragraph1">Some camera feeds are currently inaccessible due to network instability or interference. Anomalous data patterns indicate potential unauthorised modification or tampering of camera devices.</p>';
+
+
+    if (camera7Interval) {
+      clearInterval(camera7Interval);
+      camera7Interval = null;
+    }
+  }
+
+    document.querySelectorAll('.nav__link').forEach(link => {
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const isActive = this.classList.contains('conversation-link--unread');
+
+        clearDisplay();
+
+        if (!isActive) {
+          this.classList.add('conversation-link--unread');
+          this.classList.remove('conversation-link');
+
+          const id = this.dataset.id;
+          const titleText = this.querySelector('.conversation-link__element').textContent;
+
+          switch (id) {
+            case 'camera1':
+              messageBody.innerHTML = `
+                <div>
+                  <video style="width:800px; height:480px;" autoplay muted>
+                  <source src="/static/sc1.webm" type="video/webm">
+                  </video>
+                </div>
+                <hr>Live camera feed from zone A-1. Visuals active and audio streaming.
+                </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = titleText;
+              break;
+            case 'camera3':
+              messageBody.innerHTML = `
+                <div>
+                <img src="/static/pedro.gif" style="width:800px; height:480px;">
+              </div><hr>Live camera feed from zone B-2. Visuals active and audio streaming.
+                </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = titleText;
+              break;
+            case 'camera5':
+              messageBody.innerHTML = `
+                <div>
+                   <video style="width:800px; height:480px;" autoplay muted>
+                  <source src="/static/sc2.webm" type="video/webm">
+                  </video>
+                  </div>
+                <hr>Live camera feed from zone C-1. Visuals active and audio streaming.
+                </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = titleText;
+              break;
+              case 'camera7':
+              messageBody.innerHTML = `
+               <div>
+                  <img src="/static/bean.gif" style="width:800px; height:480px;">
+                </div>
+                <div><hr>Live camera feed from zone D-1. Visuals active and audio streaming.
+                </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = titleText;
+              break;
+              case 'camera8':
+              messageBody.innerHTML = `
+                <div>
+                  <video style="width:800px; height:480px;" autoplay muted>
+                  <source src="/static/sc3.webm" type="video/webm">
+                  </video>
+                </div>
+                <div><hr>Live camera feed from zone D-2. Visuals active and audio streaming.
+                </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = titleText;
+              break;
+              case 'camera9':
+              messageBody.innerHTML = `
+                <div>
+                  <img src="{{ url_for('video_feed') }}" style="width:800px; height:480px;">
+                </div><hr><div id="scannerText" style="color:crimson;">Scanning...</div>
+                <!-- CTF HINT! If you can't see anything here, try another browser without a proxy! -->
+              `;
+              padBody.innerHTML = `
+              <div>
+             <h4 class="text-heading3 undefined glitch-text">hidden in plain sight</h4>
+              <p class="text-paragraph1 glitch-text">Those jokers will never notice I've modified one of their cameras into my own personal Q-Scanna™ for transitting data. Too bad it only seems to work locally though...</p>
+            </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = titleText;
+
+              camera7Interval = setInterval(async () => {
+                try {
+                  const res = await fetch('/data');
+                  if (res.ok) {
+                    const text = await res.text();
+                    if (text.trim()) {
+                      document.getElementById('scannerText').textContent = text;
+                    }
+                  }
+                } catch (e) {
+                }
+              }, 5000);
+              break;
+              case 'camera10':
+              messageBody.innerHTML = `
+                <div>
+                  <img src="/static/tv-static.gif" style="width:800px; height:480px;">
+                </div><hr>Live camera feed from zone E-2. Visuals active and audio streaming.
+                </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = titleText;
+              break;
+            default:
+              messageBody.innerHTML = `
+                <div style="color:crimson;">
+                  Unable to retrieve content. Try again later.
+                </div>
+              `;
+              segmentTitle.querySelector('.channel-link__element').textContent = 'Unavailable';
+              break;
+          }
+        }
+      });
+    });
+
+
+
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.nav__link')) {
+      clearDisplay();
+    }
+  });
+</script>
+
+
+
+<script>
+  function updateLiveTime() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+    document.getElementById('liveTime').textContent = timeString;
+  }
+
+  updateLiveTime();
+  setInterval(updateLiveTime, 1000);
+</script>
+
+
+
+
+</body>
+</html>

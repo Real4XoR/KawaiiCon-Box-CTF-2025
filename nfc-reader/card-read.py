@@ -4,26 +4,28 @@ from mfrc522 import SimpleMFRC522
 from gpiozero import AngularServo
 from gpiozero.pins.pigpio import PiGPIOFactory
 
-# ---------- CONFIG ----------
+# ---------- Config ----------
 
 magic_uid = "7481b8c885"     # Expected UID
 magic_password = "wootwoot"  # Expected password
 
-pins = {'pin_R': 17, 'pin_G': 22, 'pin_B': 27}
+music_dir = "/home/raspberry/kawaiicon_box/static"
+
+pins = {'pin_R': 17, 'pin_G': 27, 'pin_B': 22}
 
 FREQ_R = 2000
 FREQ_G = 2000
 FREQ_B = 5000
 
-COLOR_BLUE   = 0x0000FF   
-COLOR_GREEN  = 0x00FF00   
-COLOR_RED    = 0xFF0000   
-COLOR_TEAL   = 0xB2D8D8   
+COLOUR_BLUE   = 0x0000FF   
+COLOUR_GREEN  = 0x00FF00   
+COLOUR_RED    = 0xFF0000   
+COLOUR_ORANGE = 0xFFA500   
 
 OPEN_STATE = 90
 CLOSE_STATE = -90
 
-# ---------- GPIO / PWM setup ----------
+# ---------- GPIO / PWM Setup ----------
 
 GPIO.setmode(GPIO.BCM)
 
@@ -66,15 +68,15 @@ def open_door():
 def close_door():
 	servo.angle = CLOSE_STATE
 
-# ---------- Music ---------------
+# ---------- Music Control ---------------
 
 def play_music(music_file):
     pygame.mixer.music.stop()
-    file_path = os.path.join("/home/raspberry/kawaiicon_box/static", music_file)
+    file_path = os.path.join(music_dir, music_file)
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
 
-# ---------- RFID reader ----------
+# ---------- RFID Reader ----------
 
 reader = SimpleMFRC522()
 
@@ -100,7 +102,7 @@ def cleanup():
             pass
     GPIO.cleanup()
 
-# ---------- Main loop ----------
+# ---------- Main Loop ----------
 
 if __name__ == "__main__":
     print("Expected UID:    ", magic_uid)
