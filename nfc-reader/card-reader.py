@@ -6,18 +6,6 @@ from gpiozero.pins.pigpio import PiGPIOFactory
 from time import sleep
 from gpiozero import Button
 
-button = Button(6)  # GPIO 6
-
-def on_button_press():
-    print("Button pressed! Playing music...")
-    play_music("wow.wav")  # Replace with your file name
-
-# --- Connect button event ---
-button.when_pressed = on_button_press
-
-print("Ready. Press the button to play music.")
-
-
 # ---------- Config ----------
 
 # expected UID (as hex string, lowercase, no "0x", zero-padded as needed)
