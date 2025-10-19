@@ -12,19 +12,31 @@ There are two ways to open the box - either you solve the puzzle and get the com
 
 #### Puzzle
 
-eight locks with 35 keys
+chain with 14 locks on them
 
-locks attached to chain 
+each lock has a number + letter (each letter corresponds with the number of its place in alphabet e.g. A=1 B=2 ... Z=26 )
 
-only three keys work
+three sets of keyrings with 4 keys + label attached to each one
 
-all locks have letters on them 
+3 of the keys on each keyring has numbers on them
 
-all keys have ROT-X letters on them
+the label on each keyring has an encoded equation: 
 
-letter correspond with the number of its place in alphabet e.g. A=1 B=2 ... Z=26
+1. addition:YWRkaXRpb24 (base64)
 
-correct 3 digits will unlock combo pad lock
+2. average:6927a3a7218a3195858411433ec20a21 (md5)
+
+3. minimum:6D756D696E696D (reverse english to hexadecimal)
+
+each keyring's solution corresponds with the number on the locks
+
+e.g, keyring 1 has 3 keys with 1 2 3 on them. using the addition equation, you add 1 + 2 + 3 = 6
+
+find the lock with 6 on it. the 4th key on the keyring will unlock this
+
+open the lock, get correct letter 
+
+3 correct locks have combo lock solution - A, E, F (156)
 
 ## Challenge 2 - Web Application
 
