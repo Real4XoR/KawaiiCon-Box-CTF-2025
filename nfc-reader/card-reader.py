@@ -21,7 +21,7 @@ pygame.mixer.music.set_volume(1)
 # ----------------------------
 
 # RGB pins (BCM)
-pins = {'pin_R': 17, 'pin_G': 22, 'pin_B': 27}
+pins = {'pin_R': 17, 'pin_G': 27, 'pin_B': 22}
 
 # PWM frequencies
 FREQ_R = 2000
