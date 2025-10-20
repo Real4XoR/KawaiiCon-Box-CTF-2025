@@ -1,11 +1,10 @@
-Buy parts for challenge 1
-
-Decorate box
-
-Battery pack for Pi?
-Mount camera and Pi to box
-
-Setup Pi AP
-Harden Pi
-
-Finish challenge 3
+- Paint and insert cardboard cutouts to hide cables
+- Setup AP to access webapp
+- Configure services to run all scripts on boot
+- Create backup in root directory that overwrites existing files to 'reset' it 
+- Create dead-drop map for Michael Fowler centre
+- Add proper password to admin login
+- Add in more sounds for separate actions
+- Send empty sound files to speaker to make sure it doesn't turn off
+- Attach locking mechanism to second box
+- Change PIN for webapp challenge

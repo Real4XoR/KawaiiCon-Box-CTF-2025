@@ -14,6 +14,9 @@ import urllib.parse
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 
+DB_PATH = '/home/raspberry/kawaiicon_box/webapp/static/user.db'
+BOX_PIN = 123
+
 camera = None
 latest_data = None
 fetched_data = "Scanning..."
@@ -107,7 +110,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
 
-        conn = sqlite3.connect('/home/raspberry/kawaiicon_box/webapp/static/user.db')
+        conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
 
         cursor.execute("SELECT * FROM USERS WHERE username = ? AND password = ?", (username, password))
@@ -136,7 +139,7 @@ def dashboard():
 
     sess_id = request.cookies.get('sessions', '')
 
-    conn = sqlite3.connect('/home/raspberry/kawaiicon_box/static/user.db')
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     try:
@@ -156,7 +159,7 @@ def dashboard():
 def system_configuration():
     if request.remote_addr not in ['127.0.0.1', '::1']:
         abort(403)
-    return jsonify({'PIN Code': 123})
+    return jsonify({'PIN Code': BOX_PIN})
 
 
 
