@@ -1,17 +1,21 @@
-import RPi.GPIO as GPIO
-import pygame, os, time
-from mfrc522 import SimpleMFRC522
-from gpiozero import AngularServo
-from gpiozero.pins.pigpio import PiGPIOFactory
+import os
+import io
+import time
+import wave
 from time import sleep
-from gpiozero import Button
+
+import pygame
+import RPi.GPIO as GPIO
+from mfrc522 import SimpleMFRC522
+from gpiozero import AngularServo, Button
+from gpiozero.pins.pigpio import PiGPIOFactory
 
 # ---------- Config ----------
 
-# expected UID (as hex string, lowercase, no "0x", zero-padded as needed)
+# expected UID
 magic_uid = "7481b8c885"
 
-# expected password (text stored on the tag)
+# expected password
 magic_password = "wootwoot1"
 
 dir = os.path.dirname(__file__)
@@ -20,7 +24,7 @@ pygame.mixer.music.set_volume(1)
 
 # ----------------------------
 
-# RGB pins (BCM)
+# RGB pins
 pins = {'pin_R': 17, 'pin_G': 27, 'pin_B': 22}
 
 # PWM frequencies
@@ -28,17 +32,18 @@ FREQ_R = 2000
 FREQ_G = 2000
 FREQ_B = 5000
 
-# Colors used (hex)
+# Colors
 COLOUR_BLUE   = 0x0000FF   # waiting
 COLOUR_GREEN  = 0x00FF00   # success
 COLOUR_RED    = 0xFF0000   # uid mismatch / failure
 COLOUR_PURPLE = 0x800080   # uid match but wrong password
+COLOUR_OFF    = 0x000000   # turn off
 
 GPIO.setmode(GPIO.BCM)
 
 for key in pins:
     GPIO.setup(pins[key], GPIO.OUT)
-    GPIO.output(pins[key], GPIO.HIGH)  # Use HIGH for common cathode LEDs (LOW for common anode)
+    GPIO.output(pins[key], GPIO.HIGH) 
 
 p_R = GPIO.PWM(pins['pin_R'], FREQ_R)
 p_G = GPIO.PWM(pins['pin_G'], FREQ_G)
@@ -51,11 +56,9 @@ p_B.start(0)
 # ---------- Helper Functions ----------
 
 def map_val(x, in_min, in_max, out_min, out_max):
-    """Maps a value from one range to another."""
     return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 def set_color(hex_color):
-    """Set LED color using a 24-bit hex value (e.g. 0xFFA500 for orange)."""
     r = (hex_color & 0xFF0000) >> 16
     g = (hex_color & 0x00FF00) >> 8
     b = (hex_color & 0x0000FF)
@@ -69,7 +72,6 @@ def set_color(hex_color):
     p_B.ChangeDutyCycle(b_dc)
 
 def turn_off():
-    """Turns the LED off."""
     set_color(COLOR_OFF)
 
 # ---------- Button ----------
@@ -95,6 +97,21 @@ def close_door():
 
 # ---------- Music ---------------
 
+def keep_speaker_alive(interval=120):
+    buf = io.BytesIO()
+    with wave.open(buf, 'wb') as f:
+        f.setnchannels(2)     
+        f.setsampwidth(2)      
+        f.setframerate(44100)
+        f.writeframes(b'\x00' * 4410 * 2 * 2) 
+    buf.seek(0)
+
+    sound = pygame.mixer.Sound(buffer=buf)
+
+    while True:
+        sound.play()
+        time.sleep(interval)
+
 def play_music(music_file):
     pygame.mixer.music.stop()
     file_path = os.path.join("/home/raspberry/kawaiicon_box/static", music_file)
@@ -106,13 +123,7 @@ def play_music(music_file):
 reader = SimpleMFRC522()
 
 def format_uid_as_hex(uid_int):
-    """
-    Convert integer UID returned by SimpleMFRC522 to lowercase hex string
-    without 0x prefix. Zero-pad to even length if needed.
-    """
     h = format(uid_int, 'x').lower()
-    # optional: zero-pad to a consistent length if you know it (e.g. 10)
-    # h = h.zfill(10)
     return h
 
 def cleanup():
@@ -122,7 +133,6 @@ def cleanup():
         p_B.stop()
     except Exception:
         pass
-    # turn off LEDs (set HIGH if wiring is active-low)
     for key in pins:
         try:
             GPIO.output(pins[key], GPIO.HIGH)
@@ -133,6 +143,8 @@ def cleanup():
 # ---------- Main loop ----------
 
 if __name__ == "__main__":
+    threading.Thread(target=keep_speaker_alive, args=(120,), daemon=True).start()
+
     print("MIFARE Check Script")
     print("Expected UID:    ", magic_uid)
     print("Expected secret: ", magic_password)
@@ -143,11 +155,9 @@ if __name__ == "__main__":
 
     try:
         while True:
-            # show waiting color
             set_color(COLOUR_BLUE)
-            # reader.read() blocks until a tag is presented
             print("Place a tag on the reader...")
-            uid_int, data = reader.read()   # id (int), text (str)
+            uid_int, data = reader.read()  
             uid_hex = format_uid_as_hex(uid_int)
             read_text = (data or "").strip()
 
@@ -156,7 +166,6 @@ if __name__ == "__main__":
             print("Stored text on tag:", repr(read_text))
 
             if uid_hex == magic_uid.lower():
-                # UID matches
                 if read_text == magic_password:
                     print(">> SUCCESS: UID and password match.")
                     set_color(COLOUR_GREEN)
@@ -165,19 +174,16 @@ if __name__ == "__main__":
                 else:
                     print(">> WARNING: UID matches but password is incorrect.")
                     set_color(COLOUR_PURPLE)
-                # hold feedback for 2 seconds so it is noticeable
                 time.sleep(2)
             else:
-                # UID does not match
                 print(">> FAIL: UID does not match expected value.")
                 set_color(COLOUR_RED)
                 close_door()
                 time.sleep(2)
 
-            # after feedback, go back to waiting color for the next tag
             set_color(COLOUR_BLUE)
             print("\nReady for next card.\n")
-            # small delay to avoid bouncing immediate re-reads
+
             time.sleep(0.3)
 
     except KeyboardInterrupt:

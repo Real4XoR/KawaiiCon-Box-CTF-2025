@@ -8,3 +8,6 @@
 - Send empty sound files to speaker to make sure it doesn't turn off
 - Attach locking mechanism to second box
 - Change PIN for webapp challenge
+- Expose SSH to specific hosts
+- Enforce public key authentication to SSH
+- Add another power cable for speaker

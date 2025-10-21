@@ -35,7 +35,6 @@ def stop_camera():
         camera.close()
         camera = None
 
-
 def handle_qr_data(latest_data):
     global fetched_data
 
@@ -47,7 +46,6 @@ def handle_qr_data(latest_data):
         fetched_data = error_message
         time.sleep(0.3)
         return
-
     try:
         response = requests.get(latest_data)
         response.raise_for_status()
@@ -58,7 +56,6 @@ def handle_qr_data(latest_data):
         print(f"An error occurred: {e}")
         fetched_data = str(e)
         time.sleep(0.3)
-
 
 def generate_frames():
     global latest_data
@@ -88,7 +85,6 @@ def generate_frames():
     finally:
         stop_camera()
 
-
 @app.route('/data')
 def get_data():
     return Response(fetched_data, mimetype='text/plain')
@@ -98,11 +94,9 @@ def video_feed():
     start_camera()
     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
-
 @app.route('/')
 def index():
     return redirect(url_for('login'))
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -161,17 +155,13 @@ def system_configuration():
         abort(403)
     return jsonify({'PIN Code': BOX_PIN})
 
-
-
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
 
-
-
 atexit.register(stop_camera)
 
-
 if __name__ == '__main__':
+    threading.Thread(target=keep_speaker_alive, args=(120,), daemon=True).start()
     app.run(host="0.0.0.0", debug=True, threaded=True)
