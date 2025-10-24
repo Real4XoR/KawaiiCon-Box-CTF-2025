@@ -2,6 +2,7 @@ import os
 import io
 import time
 import wave
+import threading
 from time import sleep
 
 import pygame
@@ -24,15 +25,12 @@ pygame.mixer.music.set_volume(1)
 
 # ----------------------------
 
-# RGB pins
 pins = {'pin_R': 17, 'pin_G': 27, 'pin_B': 22}
 
-# PWM frequencies
 FREQ_R = 2000
 FREQ_G = 2000
 FREQ_B = 5000
 
-# Colors
 COLOUR_BLUE   = 0x0000FF   # waiting
 COLOUR_GREEN  = 0x00FF00   # success
 COLOUR_RED    = 0xFF0000   # uid mismatch / failure
@@ -76,7 +74,7 @@ def turn_off():
 
 # ---------- Button ----------
 
-button = Button(6)  # GPIO 6
+button = Button(6)
 
 def on_button_press():
     print("Button pressed! Playing music...")
@@ -114,7 +112,7 @@ def keep_speaker_alive(interval=120):
 
 def play_music(music_file):
     pygame.mixer.music.stop()
-    file_path = os.path.join("/home/raspberry/kawaiicon_box/static", music_file)
+    file_path = os.path.join("./static", music_file)
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
 

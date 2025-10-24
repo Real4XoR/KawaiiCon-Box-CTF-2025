@@ -14,8 +14,8 @@ import urllib.parse
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 
-DB_PATH = '/home/raspberry/kawaiicon_box/webapp/static/user.db'
-BOX_PIN = 123
+DB_PATH = './static/user.db'
+BOX_PIN = 619
 
 camera = None
 latest_data = None
@@ -163,5 +163,4 @@ def logout():
 atexit.register(stop_camera)
 
 if __name__ == '__main__':
-    threading.Thread(target=keep_speaker_alive, args=(120,), daemon=True).start()
     app.run(host="0.0.0.0", debug=True, threaded=True)
