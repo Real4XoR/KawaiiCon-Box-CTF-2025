@@ -141,6 +141,19 @@ def cleanup():
             pass
     GPIO.cleanup()
 
+def normalize_card_text(data):
+    if data is None:
+        return ""
+    if isinstance(data, str):
+        b = data.encode('utf-8', errors='ignore')
+    elif isinstance(data, bytes):
+        b = data
+    else:
+        b = str(data).encode('utf-8', errors='ignore')
+
+    b = b.rstrip(b'\x00')
+    return b.decode('utf-8', errors='ignore')
+
 # ---------- Main loop ----------
 
 if __name__ == "__main__":
@@ -158,9 +171,10 @@ if __name__ == "__main__":
         while True:
             set_color(COLOUR_BLUE)
             print("Place a tag on the reader...")
-            uid_int, data = reader.read()  
+            uid_int, data = reader.read()
             uid_hex = format_uid_as_hex(uid_int)
-            read_text = (data or "").strip()
+
+            read_text = normalize_card_text(data)
 
             print("Detected UID (int):", uid_int)
             print("Detected UID (hex):", uid_hex)
