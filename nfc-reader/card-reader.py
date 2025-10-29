@@ -94,6 +94,7 @@ def close_door():
 
 # ---------- Music ---------------
 
+'''
 def keep_speaker_alive(interval=120):
     buf = io.BytesIO()
     with wave.open(buf, 'wb') as f:
@@ -108,6 +109,7 @@ def keep_speaker_alive(interval=120):
     while True:
         sound.play()
         time.sleep(interval)
+'''
 
 def play_music(music_file):
     pygame.mixer.music.stop()
@@ -140,7 +142,7 @@ def cleanup():
 # ---------- Main loop ----------
 
 if __name__ == "__main__":
-    threading.Thread(target=keep_speaker_alive, args=(120,), daemon=True).start()
+    # threading.Thread(target=keep_speaker_alive, args=(120,), daemon=True).start()
 
     print("MIFARE Check Script")
     print("Expected UID:    ", magic_uid)
