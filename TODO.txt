@@ -1,7 +1,4 @@
-- Setup AP to access webapp
-- Configure services to run all scripts on boot
-- Create backup in root directory that overwrites existing files to 'reset' it 
+- Setup AP to access webapp 
 - Create dead-drop map for Michael Fowler centre
-- Add proper password to admin login
 - Add in more sounds for separate actions
 - Attach locking mechanism to second box
