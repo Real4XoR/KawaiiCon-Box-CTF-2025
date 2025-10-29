@@ -57,6 +57,20 @@ Light returns information based on the card you've scanned:
 - Purple light = Correct UID but wrong password
 - Green light = Correct UID and correct password
 
+Writing the password to the fob using the Mifare Classic app:
+
+- Scan fob using Android phone
+- Select "Read Tag"
+- Select "START MAPPING AND READ TAG"
+- Select the top line of 0's within Sector 2 and delete everything
+- Convert password to hex and enter that within the top line of Sector 2
+- Fill in the remaining space on the top line with 0's. Note, this is important
+- Select the three dots in the top right corner and press "Write Dump"
+- Select "Write Dump (Clone)" and click "WRITE DUMP"
+- Ensure all checkboxes are checked
+- Select "START MAPPING AND WRITE DUMP"
+- Confirm if the correct password has been applied
+
 ## Bonus Challenges
 
 There are two bonus challenges for those that pwn the entire Raspberry PI, each get an extra prize:
