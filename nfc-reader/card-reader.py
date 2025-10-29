@@ -141,7 +141,7 @@ def cleanup():
             pass
     GPIO.cleanup()
 
-    def cleanup_reader(reader):
+def cleanup_reader(reader):
     try:
         if hasattr(reader, "READER") and hasattr(reader.READER, "Close_MFRC522"):
             reader.READER.Close_MFRC522()
@@ -175,7 +175,6 @@ if __name__ == "__main__":
 
     try:
         while True:
-            # ✅ Create reader each loop iteration (ensures SPI reinit each time)
             reader = SimpleMFRC522()
             set_color(COLOUR_BLUE)
             print("Place a tag on the reader...")
