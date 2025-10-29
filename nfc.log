@@ -1,23 +1,14 @@
 /home/raspberry/KawaiiCon-Box-CTF-2025/nfc-reader/card-reader.py:43: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
   GPIO.setup(pins[key], GPIO.OUT)
-pygame 2.6.1 (SDL 2.28.4, Python 3.11.2)
-Hello from the pygame community. https://www.pygame.org/contribute.html
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Can't connect to pigpio at localhost(8888)
-
-Did you start the pigpio daemon? E.g. sudo pigpiod
-
-Did you specify the correct Pi host/port in the environment
-variables PIGPIO_ADDR/PIGPIO_PORT?
-E.g. export PIGPIO_ADDR=soft, export PIGPIO_PORT=8888
-
-Did you specify the correct Pi host/port in the
-pigpio.pi() function? E.g. pigpio.pi('soft', 8888)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/usr/local/lib/python3.11/dist-packages/mfrc522/MFRC522.py:151: RuntimeWarning: This channel is already in use, continuing anyway.  Use GPIO.setwarnings(False) to disable warnings.
+  GPIO.setup(pin_rst, GPIO.OUT)
+Exception in thread Thread-4 (keep_speaker_alive):
 Traceback (most recent call last):
-  File "/home/raspberry/KawaiiCon-Box-CTF-2025/nfc-reader/card-reader.py", line 87, in <module>
-    factory = PiGPIOFactory()
-              ^^^^^^^^^^^^^^^
-  File "/usr/lib/python3/dist-packages/gpiozero/pins/pigpio.py", line 93, in __init__
-    raise IOError(f'failed to connect to {host}:{port}')
-OSError: failed to connect to localhost:8888
+  File "/usr/lib/python3.11/threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.11/threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/raspberry/KawaiiCon-Box-CTF-2025/nfc-reader/card-reader.py", line 107, in keep_speaker_alive
+    sound = pygame.mixer.Sound(buffer=buf)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Expected object with buffer interface: got a _io.BytesIO

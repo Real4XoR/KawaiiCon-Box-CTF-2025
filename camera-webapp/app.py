@@ -104,10 +104,11 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
 
+        password_hash = hashlib.md5(password.encode('utf-8')).hexdigest()
+
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
-
-        cursor.execute("SELECT * FROM USERS WHERE username = ? AND password = ?", (username, password))
+        cursor.execute("SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?", (username, password_hash))
         user = cursor.fetchone()
         conn.close()
 
@@ -118,7 +119,7 @@ def login():
             error = 'Invalid credentials'
             return render_template('login.html', error=error)
 
-
+    # GET request
     resp = make_response(render_template('login.html'))
     resp.set_cookie('sessions', 'guest_sess_001')
     return resp
