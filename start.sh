@@ -46,5 +46,7 @@ echo "$RANDOM_STRING" > /root/webapp_admin_password.txt
 
 echo "[*] Starting challenges"
 
+sudo pigpiod
+
 /usr/bin/python3 /home/raspberry/KawaiiCon-Box-CTF-2025/camera-webapp/app.py > /home/raspberry/KawaiiCon-Box-CTF-2025/webapp.log 2>&1 &
 /usr/bin/python3 /home/raspberry/KawaiiCon-Box-CTF-2025/nfc-reader/card-reader.py > /home/raspberry/KawaiiCon-Box-CTF-2025/nfc.log 2>&1 &

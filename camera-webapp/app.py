@@ -14,7 +14,7 @@ import urllib.parse
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 
-DB_PATH = './static/user.db'
+DB_PATH = '/home/raspberry/KawaiiCon-Box-CTF-2025/camera-webapp/static/user.db'
 BOX_PIN = 619
 
 camera = None
