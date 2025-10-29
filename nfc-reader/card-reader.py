@@ -77,7 +77,6 @@ def turn_off():
 button = Button(6)
 
 def on_button_press():
-    print("Button pressed! Playing music...")
     play_music("wow.wav") 
 
 button.when_pressed = on_button_press
@@ -112,7 +111,7 @@ def keep_speaker_alive(interval=120):
 
 def play_music(music_file):
     pygame.mixer.music.stop()
-    file_path = os.path.join("./static", music_file)
+    file_path = os.path.join("./nfc-reader/static", music_file)
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
 
@@ -167,7 +166,7 @@ if __name__ == "__main__":
                 if read_text == magic_password:
                     print(">> SUCCESS: UID and password match.")
                     set_color(COLOUR_GREEN)
-                    play_music("wow.wav")
+                    play_music("open.wav")
                     open_door()
                 else:
                     print(">> WARNING: UID matches but password is incorrect.")
