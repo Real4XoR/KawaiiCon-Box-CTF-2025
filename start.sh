@@ -12,8 +12,9 @@ fi
 DB="/home/raspberry/KawaiiCon-Box-CTF-2025/camera-webapp/static/user.db"
 USERNAME="admin"
 RANDOM_LENGTH=24
-RANDOM_STRING=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c "$RANDOM_LENGTH")
-HASH=$(echo -n "$RANDOM_STRING" | md5sum | awk '{print $1}')
+PASSWORD_STRING=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c "$RANDOM_LENGTH")
+SESSION_STRING=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c "$RANDOM_LENGTH")
+HASH=$(echo -n "$PASSWORD_STRING" | md5sum | awk '{print $1}')
 
 # ===== Update Backup =====
 
@@ -38,10 +39,10 @@ sqlite3 "$DB" "CREATE TABLE IF NOT EXISTS USERS(
   USERNAME TEXT PRIMARY KEY NOT NULL,
   PASSWORD TEXT NOT NULL,
   SESSION TEXT NOT NULL
-); INSERT OR REPLACE INTO USERS (USERNAME, PASSWORD, SESSION) VALUES ('$USERNAME', '$HASH', 'zxcasdqwe');"
+); INSERT OR REPLACE INTO USERS (USERNAME, PASSWORD, SESSION) VALUES ('$USERNAME', '$HASH', '$SESSION_STRING');"
 
-echo "[*] Webapp admin password: $RANDOM_STRING"
-echo "$RANDOM_STRING" > /root/webapp_admin_password.txt
+echo "[*] Webapp admin password: $PASSWORD_STRING"
+echo "$PASSWORD_STRING" > /root/webapp_admin_password.txt
 
 # ===== Run Challenges =====
 
