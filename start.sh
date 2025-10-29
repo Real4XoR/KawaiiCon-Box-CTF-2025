@@ -64,7 +64,12 @@ echo "$PASSWORD_STRING" > /root/webapp_admin_password.txt
 
 echo "[*] Starting challenges"
 
-sudo pigpiod
+if pgrep -x "pigpiod" >/dev/null; then
+    echo "[*] Pigpiod is already running, skipping"
+else
+    sudo pigpiod
+    echo "[*] Starting Pigpiod"
+fi
 
 /usr/bin/python3 /home/raspberry/KawaiiCon-Box-CTF-2025/camera-webapp/app.py > /home/raspberry/KawaiiCon-Box-CTF-2025/webapp.log 2>&1 &
 echo $! > /home/raspberry/KawaiiCon-Box-CTF-2025/app.pid
