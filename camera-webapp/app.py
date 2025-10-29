@@ -120,7 +120,6 @@ def login():
             error = 'Invalid credentials'
             return render_template('login.html', error=error)
 
-    # GET request
     resp = make_response(render_template('login.html'))
     resp.set_cookie('sessions', 'guest_sess_001')
     return resp
@@ -165,4 +164,4 @@ def logout():
 atexit.register(stop_camera)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True, threaded=True)
+    app.run(host="0.0.0.0", debug=False, threaded=True)

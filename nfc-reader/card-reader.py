@@ -19,7 +19,7 @@ GPIO.setwarnings(False)
 magic_uid = "7481b8c885"
 
 # expected password
-magic_password = "wootwoot1"
+magic_password = "DieHardIsAChristmasMovie"
 
 dir = os.path.dirname(__file__)
 pygame.mixer.init()
