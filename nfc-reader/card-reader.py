@@ -141,6 +141,14 @@ def cleanup():
             pass
     GPIO.cleanup()
 
+    def cleanup_reader(reader):
+    try:
+        if hasattr(reader, "READER") and hasattr(reader.READER, "Close_MFRC522"):
+            reader.READER.Close_MFRC522()
+            print("MFRC522 SPI connection closed.")
+    except Exception as e:
+        print("Warning: could not close reader cleanly:", e)
+
 def normalize_card_text(data):
     if data is None:
         return ""
@@ -157,8 +165,6 @@ def normalize_card_text(data):
 # ---------- Main loop ----------
 
 if __name__ == "__main__":
-    # threading.Thread(target=keep_speaker_alive, args=(120,), daemon=True).start()
-
     print("MIFARE Check Script")
     print("Expected UID:    ", magic_uid)
     print("Expected secret: ", magic_password)
@@ -169,11 +175,13 @@ if __name__ == "__main__":
 
     try:
         while True:
+            # ✅ Create reader each loop iteration (ensures SPI reinit each time)
+            reader = SimpleMFRC522()
             set_color(COLOUR_BLUE)
             print("Place a tag on the reader...")
+
             uid_int, data = reader.read()
             uid_hex = format_uid_as_hex(uid_int)
-
             read_text = normalize_card_text(data)
 
             print("Detected UID (int):", uid_int)
@@ -199,6 +207,7 @@ if __name__ == "__main__":
             set_color(COLOUR_BLUE)
             print("\nReady for next card.\n")
 
+            cleanup_reader(reader)
             time.sleep(0.3)
 
     except KeyboardInterrupt:
