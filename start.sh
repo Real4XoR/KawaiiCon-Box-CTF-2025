@@ -28,18 +28,21 @@ cd /home/raspberry/KawaiiCon-Box-CTF-2025
 
 # ===== Kill Existing Processes
 
-if [ -f "$PID_FILE" ]; then
-    OLD_PID=$(<"$PID_FILE")
-    if kill -0 "$OLD_PID" 2>/dev/null; then
-        echo "[*] Stopping existing process (PID $OLD_PID)..."
-        kill "$OLD_PID"
-        while kill -0 "$OLD_PID" 2>/dev/null; do
-            sleep 0.5
-        done
-        echo "Stopped."
-    fi
-    rm -f "$PID_FILE"
-fi
+while true; do
+    read -p "Have you stopped the running challenges? [y/n]: " yn
+    case $yn in
+        [Yy]* ) 
+            break
+            ;;
+        [Nn]* ) 
+            echo 'Run: sudo kill $(cat app.pid)'
+            exit 1
+            ;;
+        * ) 
+            echo "Please answer y (yes) or n (no)."
+            ;;
+    esac
+done
 
 # ===== Overwrite Files =====
 
