@@ -11,6 +11,8 @@ from mfrc522 import SimpleMFRC522
 from gpiozero import AngularServo, Button
 from gpiozero.pins.pigpio import PiGPIOFactory
 
+GPIO.setwarnings(False)
+
 # ---------- Config ----------
 
 # expected UID
