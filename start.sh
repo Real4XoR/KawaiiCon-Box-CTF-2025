@@ -31,7 +31,8 @@ cd /home/raspberry/KawaiiCon-Box-CTF-2025
 while true; do
     read -p "Have you stopped the running challenges? [y/n]: " yn
     case $yn in
-        [Yy]* ) 
+        [Yy]* )
+            rm app.pid 
             break
             ;;
         [Nn]* ) 

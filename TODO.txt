@@ -2,3 +2,4 @@
 - Create dead-drop map for Michael Fowler centre
 - Add in more sounds for separate actions
 - Attach locking mechanism to second box
+- Fix speaker error when running NFC challenge in conjunction with webapp
