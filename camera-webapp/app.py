@@ -9,6 +9,7 @@ import time
 import threading
 import cv2
 import atexit
+import hashlib
 import urllib.parse
 
 app = Flask(__name__)
