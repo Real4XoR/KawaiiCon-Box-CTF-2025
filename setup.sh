@@ -7,7 +7,7 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# === CONFIGURATION ===
+# ===== Configuration =====
 
 USER="raspberry" 
 HOME_DIR="/home/$USER"
@@ -25,7 +25,7 @@ PUBLIC_KEYS=(
 
 echo "=== BlackBoxZero Setup Starting ==="
 
-# === SSH CONFIGURATION ===
+# ===== SSH Configuration =====
 
 echo ">>> Configuring SSH access and keys..."
 
@@ -57,7 +57,7 @@ echo "This is just a maintanence port and not apart of the challenge. Please don
 
 sudo systemctl restart ssh
 
-# === FIREWALL CONFIGURATION ===
+# ===== Firewall Configuration =====
 
 echo ">>> Setting up firewall (UFW)..."
 
@@ -75,7 +75,7 @@ sudo ufw allow proto udp from 0.0.0.0/0 to 0.0.0.0/0 port 67 comment "Allow dhcp
 sudo ufw enable
 echo ">>> UFW enabled: SSH allowed from any IP"
 
-# === ACCESS POINT SETUP VIA NETWORKMANAGER ===
+# ===== Access Point Setup =====
 
 echo ">>> Configuring Wi-Fi Access Point via NetworkManager..."
 
@@ -105,3 +105,7 @@ echo "    Password: $PASSWORD"
 echo "    Pi IP address on AP network: 192.168.4.1"
 
 echo "=== BlackBoxZero setup complete ==="
+
+# ===== Miscelaneous =====
+
+echo "FLAG{how_did_you_root_the_pi}" > /root/how_did_we_get_here.txt

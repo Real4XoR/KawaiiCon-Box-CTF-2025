@@ -15,6 +15,7 @@ RANDOM_LENGTH=24
 PASSWORD_STRING=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c "$RANDOM_LENGTH")
 SESSION_STRING=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c "$RANDOM_LENGTH")
 HASH=$(echo -n "$PASSWORD_STRING" | md5sum | awk '{print $1}')
+PID_FILE=/home/raspberry/KawaiiCon-Box-CTF-2025/app.pid
 
 # ===== Update Backup =====
 
@@ -22,6 +23,21 @@ echo "[*] Checking for updates in backup"
 
 cd /root/KawaiiCon-Box-CTF-2025
 /usr/bin/git pull
+
+# ===== Kill Existing Processes
+
+if [ -f "$PID_FILE" ]; then
+    OLD_PID=$(<"$PID_FILE")
+    if kill -0 "$OLD_PID" 2>/dev/null; then
+        echo "[*] Stopping existing process (PID $OLD_PID)..."
+        kill "$OLD_PID"
+        while kill -0 "$OLD_PID" 2>/dev/null; do
+            sleep 0.5
+        done
+        echo "Stopped."
+    fi
+    rm -f "$PID_FILE"
+fi
 
 # ===== Overwrite Files =====
 
@@ -51,4 +67,6 @@ echo "[*] Starting challenges"
 sudo pigpiod
 
 /usr/bin/python3 /home/raspberry/KawaiiCon-Box-CTF-2025/camera-webapp/app.py > /home/raspberry/KawaiiCon-Box-CTF-2025/webapp.log 2>&1 &
+echo $! > /home/raspberry/KawaiiCon-Box-CTF-2025/app.pid
 /usr/bin/python3 /home/raspberry/KawaiiCon-Box-CTF-2025/nfc-reader/card-reader.py > /home/raspberry/KawaiiCon-Box-CTF-2025/nfc.log 2>&1 &
+echo $! >> /home/raspberry/KawaiiCon-Box-CTF-2025/app.pid
