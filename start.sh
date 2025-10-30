@@ -21,8 +21,8 @@ HASH=$(echo -n "$PASSWORD_STRING" | md5sum | awk '{print $1}')
 
 echo "[*] Checking for updates in backup"
 
-cd /root/KawaiiCon-Box-CTF-2025
-/usr/bin/git pull
+# cd /root/KawaiiCon-Box-CTF-2025
+# /usr/bin/git pull
 
 cd /home/raspberry/KawaiiCon-Box-CTF-2025
 
