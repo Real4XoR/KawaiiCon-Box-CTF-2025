@@ -110,6 +110,7 @@ git clone git@github.com:Real4XoR/KawaiiCon-Box-CTF-2025.git && cd KawaiiCon-Box
 pip3 install -r requirements.txt
 sudo apt install python3-pigpio
 sudo apt install sqlite3
+sudo apt install python3-opencv
 ```
 
 Wire up the bits. I've included a Raspberry Pi 4 pin-out sheet and the wiring setup that I used.
