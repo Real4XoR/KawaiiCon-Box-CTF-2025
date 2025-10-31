@@ -15,19 +15,18 @@ SSH_DIR="$HOME_DIR/.ssh"
 AUTHORIZED_KEYS="$SSH_DIR/authorized_keys"
 
 SSID="BlackBoxZero"
-PASSWORD="whosetthisshittypassword"
+PASSWORD="whothoughtofthisshittypassword"
 
 PUBLIC_KEYS=(
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDpj9EFTdCIGm60Im6ZltQZ53kEIJ7YiUwfpBVmnFCjJ ncobbald@Laptops-MacBook-Pro.local"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE5HKN7vqMDm2aEAN63mgjhN/bGha9kdHEqDqEawz+YI bskerman@C02C204LJHD3s-MacBook-Pro.local"
 )
 
-
-echo "=== BlackBoxZero Setup Starting ==="
+echo "===== BlackBoxZero Setup Starting ====="
 
 # ===== SSH Configuration =====
 
-echo ">>> Configuring SSH access and keys..."
+echo ">>> Configuring SSH access and keys"
 
 sudo mkdir -p "$SSH_DIR"
 sudo chmod 700 "$SSH_DIR"
@@ -44,6 +43,7 @@ done
 sudo chown -R "$USER:$USER" "$SSH_DIR"
 
 SSH_CONFIG="/etc/ssh/sshd_config"
+
 sudo cp "$SSH_CONFIG" "${SSH_CONFIG}.bak"
 
 sudo sed -i 's/^#\?PasswordAuthentication.*/PasswordAuthentication no/' "$SSH_CONFIG"
@@ -53,13 +53,14 @@ sudo sed -i 's/^#\?PermitRootLogin.*/PermitRootLogin no/' "$SSH_CONFIG"
 sudo sed -i 's/^#\?PubkeyAuthentication.*/PubkeyAuthentication yes/' "$SSH_CONFIG"
 
 echo "Banner /etc/issue.net" >> $SSH_CONFIG
+
 echo "This is just a maintanence port and not apart of the challenge. Please don't try authenticate :)" >> /etc/issue.net
 
 sudo systemctl restart ssh
 
 # ===== Firewall Configuration =====
 
-echo ">>> Setting up firewall (UFW)..."
+echo ">>> Setting up firewall"
 
 sudo apt-get update -y
 sudo apt-get install -y ufw
@@ -68,44 +69,48 @@ sudo ufw --force reset
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
-sudo ufw allow 22/tcp
-sudo ufw allow 5000/tcp
+sudo ufw allow 22/tcp comment "Maintanence port"
+sudo ufw allow 5000/tcp comment ""
 sudo ufw allow proto udp from 0.0.0.0/0 to 0.0.0.0/0 port 67 comment "Allow dhcp"
 
 sudo ufw enable
-echo ">>> UFW enabled: SSH allowed from any IP"
+
+echo ">>> Firewall enabled"
 
 # ===== Access Point Setup =====
 
-echo ">>> Configuring Wi-Fi Access Point via NetworkManager..."
+echo ">>> Configuring wireless access point"
 
-sudo apt-get install -y network-manager
+nmcli con add type wifi ifname wlan0 con-name $SSID autoconnect yes ssid $SSID
+nmcli con modify $SSID 802-11-wireless.mode ap 802-11-wireless.band bg ipv4.method shared
+nmcli con modify $SSID wifi-sec.key-mgmt wpa-psk
+nmcli con modify $SSID wifi-sec.psk "$PASSWORD"
+nmcli con up $SSID
 
-sudo systemctl enable NetworkManager
-sudo systemctl start NetworkManager
+echo ">>> Creating service to start hotspot on reboot"
 
-sudo nmcli connection delete "$SSID" >/dev/null 2>&1 || true
+echo "[Unit]
+Description=Start hotspot for KawaiiCon challenges and maintanence access
+After=network-online.target
+Wants=network-online.target
 
-sudo nmcli device set wlan0 managed yes
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/nmcli con up $SSID
+RemainAfterExit=yes
 
-sudo nmcli connection add type wifi ifname wlan0 mode ap con-name "$SSID" ssid "$SSID"
-sudo nmcli connection modify "$SSID" \
-    802-11-wireless.band bg \
-    802-11-wireless.channel 7 \
-    ipv4.addresses 192.168.4.1/24 \
-    ipv4.method shared \
-    wifi-sec.key-mgmt wpa-psk \
-    wifi-sec.psk "$PASSWORD"
+[Install]
+WantedBy=multi-user.target
+" | tee /etc/systemd/system/KawaiiCon-start-hotspot.service > /dev/null
 
-sudo nmcli connection up "$SSID"
+sudo systemctl daemon-reload
+sudo systemctl enable KawaiiCon-start-hotspot.service
+sudo systemctl start KawaiiCon-start-hotspot
 
-echo ">>> Access Point '$SSID' is active."
-echo "    SSID: $SSID"
-echo "    Password: $PASSWORD"
-echo "    Pi IP address on AP network: 192.168.4.1"
-
-echo "=== BlackBoxZero setup complete ==="
+echo ">>> Service created, wait about 2 mins after boot for hotspot to appear\n"
 
 # ===== Miscelaneous =====
 
 echo "FLAG{how_did_you_root_the_pi}" > /root/how_did_we_get_here.txt
+
+echo "==== Setup complete ====="
