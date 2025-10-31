@@ -81,5 +81,5 @@ echo "[*] Starting challenges"
 
 /usr/bin/python3 camera-webapp/app.py > webapp.log 2>&1 &
 echo $! > app.pid
-/usr/bin/python3 nfc-reader/card-reader.py > nfc.log 2>&1 &
+/usr/bin/python3 nfc-reader/card-reader.py
 echo $! >> app.pid
