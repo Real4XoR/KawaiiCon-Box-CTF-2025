@@ -11,6 +11,7 @@ import cv2
 import atexit
 import hashlib
 import urllib.parse
+import random
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -86,6 +87,21 @@ def generate_frames():
     finally:
         stop_camera()
 
+def session_sql(sess_id):
+    
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    try:
+        query = f"SELECT * FROM USERS WHERE SESSION = '{sess_id}'"
+        cursor.execute(query)
+        user = cursor.fetchone()
+    except Exception as e:
+        user = None
+    finally:
+        conn.close()
+    return user
+
 @app.route('/data')
 def get_data():
     return Response(fetched_data, mimetype='text/plain')
@@ -119,11 +135,29 @@ def login():
         else:
             error = 'Invalid credentials'
             return render_template('login.html', error=error)
+    
+    if request.method == 'GET':
 
-    resp = make_response(render_template('login.html'))
-    resp.set_cookie('sessions', 'guest_sess_001')
-    return resp
+        guest_session_cookie = request.cookies.get('sessions')
 
+        if not guest_session_cookie:
+            random_digits = ''.join(random.choices('0123456789', key=4))
+            guest_session_value = f'guest_sess_{random_digits}'
+
+            response = make_response(render_template('login.html'))
+            response.set_cookie('sessions', guest_session_value)
+
+            return response
+        
+        else:
+            sess_id = request.cookies.get('sessions', '')
+            user = session_sql(sess_id)
+
+            if user:
+                return redirect(url_for('dashboard.html'))
+            else:
+                return render_template('login.html')
+    
     return render_template('login.html')
 
 @app.route('/dashboard')
@@ -133,17 +167,7 @@ def dashboard():
 
 
     sess_id = request.cookies.get('sessions', '')
-
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    try:
-        query = f"SELECT * FROM USERS WHERE SESSION = '{sess_id}'"
-        cursor.execute(query)
-        user = cursor.fetchone()
-    except Exception as e:
-        user = None
-    conn.close()
+    user = session_sql(sess_id)
 
     if user:
         return render_template('dashboard.html', username=user[0])
