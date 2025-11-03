@@ -122,6 +122,8 @@ sudo chmod +x setup.sh
 sudo ./setup.sh
 ```
 
+The start script copies an original untouched folder that gets copied in each time the `start.sh` script is run to ensure that every contender gets a fresh install. This means you should put a full copy of this repo in the `/root` directory as well as in the `/home/raspberry` directory.
+
 ### Running the Challenges
 
 Due to the nature of how the Pi handles GPIO connections, they need to be managed and run in a certain way to ensure they are "cleaned" up correctly after you are finished. Otherwise you will have to reboot the Pi (boo).
