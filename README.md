@@ -103,7 +103,7 @@ https://randomnerdtutorials.com/raspberry-pi-mjpeg-streaming-web-server-picamera
 
 ### Install project and dependencies:
 
-Connect to the Raspberry Pi and install this repo.
+Connect to the Raspberry Pi and install this repo + dependencies:
 
 ```bash
 git clone git@github.com:Real4XoR/KawaiiCon-Box-CTF-2025.git && cd KawaiiCon-Box-CTF-2025
@@ -112,6 +112,34 @@ sudo apt install python3-pigpio
 sudo apt install sqlite3
 sudo apt install python3-opencv
 ```
+
+### Setup 
+
+Run the `setup.sh` script on the PI after installation. This script configures SSH access (MAKE SURE YOU ADD YOUR OWN PUBLIC SSH KEY TO THE FILE), firewall rules, hot-spot setup, and some other miscellaneous things. 
+
+```bash
+sudo chmod +x setup.sh
+sudo ./setup.sh
+```
+
+### Running the Challenges
+
+Due to the nature of how the Pi handles GPIO connections, they need to be managed and run in a certain way to ensure they are "cleaned" up correctly after you are finished. Otherwise you will have to reboot the Pi (boo).
+
+In one terminal on the Pi run the below, this will be your live log for the NFC challenge and allow you to gracefully shut it down:
+
+```bash
+sudo chmod +x start.sh
+sudo ./start.sh
+```
+
+In another run the below, this will be your live webapp log:
+
+```bash
+tail -f webapp.log
+```
+
+### Putting it all Together
 
 Wire up the bits. I've included a Raspberry Pi 4 pin-out sheet and the wiring setup that I used.
 

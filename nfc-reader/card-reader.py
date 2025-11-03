@@ -96,7 +96,6 @@ def close_door():
 
 # ---------- Music ---------------
 
-'''
 def keep_speaker_alive(interval=120):
     buf = io.BytesIO()
     with wave.open(buf, 'wb') as f:
@@ -111,7 +110,6 @@ def keep_speaker_alive(interval=120):
     while True:
         sound.play()
         time.sleep(interval)
-'''
 
 def play_music(music_file):
     pygame.mixer.music.stop()
@@ -149,7 +147,7 @@ def cleanup_reader(reader):
     except Exception as e:
         print("Warning: could not close reader cleanly:", e)
 
-def normalize_card_text(data):
+def normalise_card_text(data):
     if data is None:
         return ""
     if isinstance(data, str):
@@ -181,7 +179,7 @@ if __name__ == "__main__":
 
             uid_int, data = reader.read()
             uid_hex = format_uid_as_hex(uid_int)
-            read_text = normalize_card_text(data)
+            read_text = normalise_card_text(data)
 
             print("Detected UID (int):", uid_int)
             print("Detected UID (hex):", uid_hex)
@@ -215,4 +213,5 @@ if __name__ == "__main__":
         print("\nAn error occurred:", e)
     finally:
         cleanup()
+        cleanup_reader(reader)
         print("Cleanup done. Goodbye.")
