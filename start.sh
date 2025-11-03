@@ -3,7 +3,7 @@
 set -e
 
 if [[ $EUID -ne 0 ]]; then
-    echo "run using sudo" >&2
+    echo "Run using sudo" >&2
     exit 1
 fi
 
@@ -19,9 +19,6 @@ HASH=$(echo -n "$PASSWORD_STRING" | md5sum | awk '{print $1}')
 # ===== Update Backup =====
 
 echo "[*] Checking for updates in backup"
-
-# cd /root/KawaiiCon-Box-CTF-2025
-# /usr/bin/git pull
 
 cd /home/raspberry/KawaiiCon-Box-CTF-2025
 
@@ -83,7 +80,12 @@ else
     echo "[*] Starting Pigpiod"
 fi
 
-rm *.log
+if [ -f *.log ]; then
+    echo "[*] Removing existing log file"
+    rm *.log
+else
+    echo "[*] No log file found. Continuing"
+fi
 
 echo "[*] Starting challenges"
 
