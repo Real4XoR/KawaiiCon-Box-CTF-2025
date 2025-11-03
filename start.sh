@@ -10,7 +10,6 @@ fi
 # ===== Configuration =====
 
 DB="/home/raspberry/KawaiiCon-Box-CTF-2025/camera-webapp/static/user.db"
-PID_FILE="/home/raspberry/KawaiiCon-Box-CTF-2025/app.pid"
 USERNAME="admin"
 RANDOM_LENGTH=24
 PASSWORD_STRING=$(< /dev/urandom tr -dc 'A-Za-z0-9' | head -c "$RANDOM_LENGTH")
@@ -32,14 +31,23 @@ while true; do
     read -p "Have you stopped the running challenges? [y/n]: " yn
     case $yn in
         [Yy]* )
-            rm app.pid 
+            if [ -f app.pid ]; then
+                echo "[*] Removing existing app.pid"
+                rm app.pid
+            else
+                echo "[*] No app.pid file found. Continuing"
+            fi
             break
             ;;
-        [Nn]* ) 
-            echo 'Run: sudo kill $(cat app.pid)'
+        [Nn]* )
+            if [ -f app.pid ]; then
+                echo "Run: sudo kill \$(cat app.pid)"
+            else
+                echo "[*] No app.pid file found, nothing to kill."
+            fi
             exit 1
             ;;
-        * ) 
+        * )
             echo "Please answer y (yes) or n (no)."
             ;;
     esac
