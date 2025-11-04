@@ -113,6 +113,18 @@ sudo apt install sqlite3
 sudo apt install python3-opencv
 sudo apt install ufw
 ```
+*****
+INSTALL PIGPIO MANUALLY VIA MAKE 
+```bash
+https://github.com/joan2937/pigpio
+wget https://github.com/joan2937/pigpio/archive/master.zip
+unzip master.zip
+cd pigpio-master
+make
+sudo make install
+```
+******
+
 
 ### Setup 
 
