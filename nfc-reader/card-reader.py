@@ -22,8 +22,8 @@ magic_uid = "7481b8c885"
 magic_password = "DieHardIsAChristmasMovie"
 
 dir = os.path.dirname(__file__)
-pygame.mixer.init()
-pygame.mixer.music.set_volume(1)
+# pygame.mixer.init()
+# pygame.mixer.music.set_volume(1)
 
 # ----------------------------
 
@@ -96,6 +96,7 @@ def close_door():
 
 # ---------- Music ---------------
 
+'''
 def keep_speaker_alive(interval=120):
     buf = io.BytesIO()
     with wave.open(buf, 'wb') as f:
@@ -116,6 +117,7 @@ def play_music(music_file):
     file_path = os.path.join("./nfc-reader/static", music_file)
     pygame.mixer.music.load(file_path)
     pygame.mixer.music.play()
+'''
 
 # ---------- RFID reader ----------
 
@@ -189,7 +191,7 @@ if __name__ == "__main__":
                 if read_text == magic_password:
                     print(">> SUCCESS: UID and password match.")
                     set_color(COLOUR_GREEN)
-                    play_music("open.wav")
+                    # play_music("open.wav")
                     open_door()
                 else:
                     print(">> WARNING: UID matches but password is incorrect.")
