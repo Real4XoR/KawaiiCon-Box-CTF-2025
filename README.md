@@ -135,6 +135,12 @@ sudo chmod +x setup.sh
 sudo ./setup.sh
 ```
 
+Also need to enable SPI interface on raspberry Pi
+```bash
+sudo raspi-config
+interface options > SPI > enable
+```
+
 The start script copies an original untouched folder that gets copied in each time the `start.sh` script is run to ensure that every contender gets a fresh install. This means you should put a full copy of this repo in the `/root` directory as well as in the `/home/raspberry` directory.
 
 ### Running the Challenges
