@@ -111,6 +111,7 @@ pip3 install -r requirements.txt
 sudo apt install python3-pigpio
 sudo apt install sqlite3
 sudo apt install python3-opencv
+sudo apt install ufw
 ```
 
 ### Setup 
