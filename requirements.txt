@@ -4,5 +4,4 @@ pigpio
 flask
 pygame
 pyzbar
-cv2
 picamera2
