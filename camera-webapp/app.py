@@ -188,7 +188,11 @@ def system_configuration():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('login'))
+
+    response = make_response(redirect(url_for('login')))
+    response.delete_cookie('sessions')
+    
+    return response
 
 atexit.register(stop_camera)
 
