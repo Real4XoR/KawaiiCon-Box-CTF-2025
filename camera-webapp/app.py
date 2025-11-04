@@ -126,7 +126,7 @@ def login():
         guest_session_cookie = request.cookies.get('sessions')
 
         if not guest_session_cookie:
-            random_digits = ''.join(random.choices('0123456789', key=4))
+            random_digits = ''.join(random.choices('0123456789', k=4))
             guest_session_value = f'guest_sess_{random_digits}'
 
             response = make_response(render_template('login.html'))
