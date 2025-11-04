@@ -87,21 +87,6 @@ def generate_frames():
     finally:
         stop_camera()
 
-def session_sql(sess_id):
-    
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-
-    try:
-        query = f"SELECT * FROM USERS WHERE SESSION = '{sess_id}'"
-        cursor.execute(query)
-        user = cursor.fetchone()
-    except Exception as e:
-        user = None
-    finally:
-        conn.close()
-    return user
-
 @app.route('/data')
 def get_data():
     return Response(fetched_data, mimetype='text/plain')
@@ -151,10 +136,19 @@ def login():
         
         else:
             sess_id = request.cookies.get('sessions', '')
-            user = session_sql(sess_id)
+            conn = sqlite3.connect(DB_PATH)
+            cursor = conn.cursor()
+
+            try:
+                query = f"SELECT * FROM USERS WHERE SESSION = '{sess_id}'"
+                cursor.execute(query)
+                user = cursor.fetchone()
+            except Exception as e:
+                user = None
+            conn.close()
 
             if user:
-                return redirect(url_for('dashboard.html'))
+                return render_template('dashboard.html', username=user[0])
             else:
                 return render_template('login.html')
     
@@ -167,12 +161,23 @@ def dashboard():
 
 
     sess_id = request.cookies.get('sessions', '')
-    user = session_sql(sess_id)
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+
+    try:
+        query = f"SELECT * FROM USERS WHERE SESSION = '{sess_id}'"
+        cursor.execute(query)
+        user = cursor.fetchone()
+    except Exception as e:
+        user = None
+    conn.close()
 
     if user:
         return render_template('dashboard.html', username=user[0])
     else:
         return redirect(url_for('login'))
+
 
 @app.route('/system_configuration', methods=['GET'])
 def system_configuration():
