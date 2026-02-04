@@ -73,10 +73,9 @@ Writing the password to the fob using the Mifare Classic app:
 
 ## Bonus Challenges
 
-There are two bonus challenges for those that pwn the entire Raspberry PI, each get an extra prize:
+There is a bonus for those that pwn the entire Raspberry PI, each get an extra prize:
 
-- A 'how_did_we_get_here.txt' flag in the root directory of the PI. Requires basic privilege escalation
-- A secret second web application running on the PI that requires the user to pwn the PI and check out the running services. Returns flag upon navigating to service.
+- A 'how_did_we_get_here.txt' flag in the root directory of the PI.
 
 # Installation
 
