@@ -63,8 +63,8 @@ Writing the password to the fob using the Mifare Classic app:
 - Select "Read Tag"
 - Select "START MAPPING AND READ TAG"
 - Select the top line of 0's within Sector 2 and delete everything
-- Convert password to hex and enter that within the top line of Sector 2
-- Fill in the remaining space on the top line with 0's. Note, this is important
+- Convert password to hex and enter that within Sector 2. Extra hex goes on a new line.
+- Fill in the remaining space with 0's. This is important
 - Select the three dots in the top right corner and press "Write Dump"
 - Select "Write Dump (Clone)" and click "WRITE DUMP"
 - Ensure all checkboxes are checked
@@ -108,7 +108,6 @@ Connect to the Raspberry Pi and install this repo + dependencies:
 ```bash
 git clone git@github.com:Real4XoR/KawaiiCon-Box-CTF-2025.git && cd KawaiiCon-Box-CTF-2025
 pip3 install -r requirements.txt
-sudo apt install python3-pigpio
 sudo apt install sqlite3
 sudo apt install python3-opencv
 sudo apt install ufw
